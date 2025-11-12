@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { Users } from 'src/modules/users/entities/users.entity';
 import { Auth } from 'src/modules/auth/entities/auth.entity';
+import { Links } from 'src/modules/shortener/entities/links.entity';
 
 const envFile = process.env.NODE_ENV === 'production'
   ? '.env.production'
@@ -19,7 +20,7 @@ const typeOrmConfig: DataSourceOptions = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [Users, Auth],
+  entities: [Users, Auth, Links],
    migrations: ['dist/migrations/*.js'],
   synchronize: false,
   ssl: true,

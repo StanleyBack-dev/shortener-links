@@ -9,10 +9,6 @@ export class Auth {
     @Column()
     idtb_users: number;
 
-    @ManyToOne(() => Users, (user) => user.sessions, { eager: false })
-    @JoinColumn({ name: 'idtb_users' })
-    user: Users;
-
     @Column({ type: 'text', nullable: true })
     access_token?: string | null;
 
@@ -45,4 +41,8 @@ export class Auth {
 
     @Column({ type: 'timestamp', nullable: true, default: null })
     last_used_at?: Date | null;
+ 
+    @ManyToOne(() => Users, (user) => user.sessions, { eager: false })
+    @JoinColumn({ name: 'idtb_users' })
+    user: Users;
 }

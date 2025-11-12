@@ -1,22 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { setupSwagger } from './config/swagger.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // CONFIGURAÇÃO DO SWAGGER
-  const config = new DocumentBuilder()
-    .setTitle('API Link Shortener')
-    .setDescription('Documentação da API de encurtador de links')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  setupSwagger(app);
 
   await app.listen(4000);
+  console.log('\n🚀 Swagger disponível em: http://localhost:4000/api');
+  console.log('🚀 Servidor disponível em: http://localhost:4000');
 }
 
 bootstrap();

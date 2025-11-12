@@ -24,7 +24,7 @@ export class AuthLoginController {
   async login(
     @Body() loginInput: DtoAuthLoginInput,
     @Req() req: Request,
-    @Res({ passthrough: true }) res: Response, // PERMITE DEFINIR COOKIES
+    @Res({ passthrough: true }) res: Response,
   ): Promise<DtoAuthLoginResponse> {
     // PEGA DADOS DO CLIENTE
     const ipAddress = req.ip || req.headers['x-forwarded-for'] || 'unknown';

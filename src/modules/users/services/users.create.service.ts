@@ -30,7 +30,6 @@ export class UsersCreateService {
 
     // RETORNA O DTO DE RESPOSTA FORMATADO
     return new DtoCreateUsersResponse({
-      idtb_users: savedUser.idtb_users,
       public_id_users: savedUser.public_idtb_users,
       username: savedUser.username,
       name: savedUser.name,
