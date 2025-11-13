@@ -3,15 +3,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Links } from './entities/links.entity';
 import { LinksCreateController } from './controllers/create/links.create.controller';
 import { LinksGetController } from './controllers/get/links.get.controller';
+import { LinksUpdateController } from './controllers/update/links.update.controller';
 import { LinksRedirectController } from './controllers/redirect/links.redirect.controller';
 import { LinksCreateService } from './services/links.create.service';
 import { LinksGetService } from './services/links.get.service';
+import { LinksUpdateService } from './services/links.update.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Links])],
-  controllers: [LinksCreateController, LinksGetController, LinksRedirectController],
-  providers: [LinksCreateService, LinksGetService],
-  exports: [LinksCreateService, LinksGetService],
+  controllers: [LinksCreateController, LinksGetController, LinksUpdateController, LinksRedirectController],
+  providers: [LinksCreateService, LinksGetService, LinksUpdateService],
+  exports: [LinksCreateService, LinksGetService, LinksUpdateService],
 })
 
 export class LinksModule {}
