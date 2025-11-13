@@ -10,6 +10,13 @@ export class LinksGetService {
     private readonly linksRepository: Repository<Links>,
   ) {}
 
+  async getAllLinksByIdUser(idUsers: number): Promise<Links[]> {
+    return this.linksRepository.find({
+      where: { user: { idtb_users: idUsers } },
+      order: { created_at: 'DESC' },
+    });
+  }
+
   async getByShortCode(shortCode: string): Promise<Links | null> {
     return this.linksRepository.findOne({ where: { short_code: shortCode } });
   }

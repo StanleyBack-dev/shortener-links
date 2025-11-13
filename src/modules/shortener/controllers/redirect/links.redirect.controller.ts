@@ -1,7 +1,8 @@
 import { Controller, Get, Param, Res, NotFoundException } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags, ApiParam } from '@nestjs/swagger';
+import { Public } from 'src/common/decorators/public.decorator';
 import type { Response } from 'express';
-import { LinksGetService } from '../services/links.get.service';
+import { LinksGetService } from '../../services/links.get.service';
 
 @ApiTags('Links')
 @Controller()
@@ -9,6 +10,7 @@ export class LinksRedirectController {
   constructor(private readonly linksGetService: LinksGetService) {}
 
   @Get(':shortCode')
+  @Public()
   @ApiOperation({ summary: 'Redireciona para a URL original' })
   @ApiParam({ name: 'shortCode', description: 'Código da URL encurtada' })
   @ApiResponse({ status: 302, description: 'Redirecionamento para a URL original' })

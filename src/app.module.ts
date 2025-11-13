@@ -1,5 +1,5 @@
 import typeOrmConfig from './database/database.orm';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
@@ -8,10 +8,13 @@ import { AuthModule } from './modules/auth/auth.module';
 import { LinksModule } from './modules/shortener/shortener.module';
 import { JwtUserInterceptor } from './common/interceptors/jwt.user.interceptor';
 import { JwtService } from '@nestjs/jwt';
+import { JwtAuthGuard } from './common/guards/jwt.auth.guard';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    CommonModule,
     UsersModule,
     AuthModule,
     LinksModule,
@@ -19,11 +22,14 @@ import { JwtService } from '@nestjs/jwt';
   ],
   providers: [
     {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
       provide: APP_INTERCEPTOR,
       useFactory: (jwtService: JwtService) => new JwtUserInterceptor(jwtService),
       inject: [JwtService],
     },
-    JwtService,
   ],
 })
 

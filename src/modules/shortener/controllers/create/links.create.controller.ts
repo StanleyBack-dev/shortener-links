@@ -1,8 +1,9 @@
 import { Controller, Post, Body, Req } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
-import { LinksCreateService } from '../services/links.create.service';
-import { DtoCreateLinksInput } from '../dto/links.create.input.dto';
-import { DtoCreateLinksResponse } from '../dto/links.create.response.dto';
+import { LinksCreateService } from '../../services/links.create.service';
+import { DtoCreateLinksInput } from '../../dto/create/links.create.input.dto';
+import { DtoCreateLinksResponse } from '../../dto/create/links.create.response.dto';
+import { Public } from 'src/common/decorators/public.decorator';
 
 @ApiTags('Links')
 @Controller('links')
@@ -12,6 +13,7 @@ export class LinksCreateController {
     ) { }
 
     @Post()
+    @Public()
     @ApiOperation({ summary: 'Encurta uma URL' })
     @ApiResponse({ status: 201, description: 'URL encurtada com sucesso', type: DtoCreateLinksResponse })
     @ApiBearerAuth()
