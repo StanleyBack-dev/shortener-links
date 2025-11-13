@@ -5,13 +5,16 @@ import { Users } from 'src/modules/users/entities/users.entity';
 import { Auth } from 'src/modules/auth/entities/auth.entity';
 import { Links } from 'src/modules/shortener/entities/links.entity';
 
-const envFile = process.env.NODE_ENV === 'production'
-  ? '.env.production'
-  : '.env.development';
+const envFile =
+  process.env.NODE_ENV === 'production'
+    ? '.env.production'
+    : '.env.development';
 
 dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 
-console.log('🧠 ENV DATABASE:', process.env.NODE_ENV, '\n');
+console.log(`🧠 ENV DATABASE: ${process.env.NODE_ENV}`);
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 const typeOrmConfig: DataSourceOptions = {
   type: 'postgres',
@@ -21,15 +24,13 @@ const typeOrmConfig: DataSourceOptions = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [Users, Auth, Links],
-   migrations: ['dist/migrations/*.js'],
-  synchronize: false,
-  ssl: true,
-  extra: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
+  migrations: ['dist/migrations/*.js'],
+  synchronize: process.env.TYPEORM_SYNC === 'true',
+  ssl: isProduction
+    ? {
+        rejectUnauthorized: false,
+      }
+    : false,
 };
 
 export default typeOrmConfig;
