@@ -11,7 +11,7 @@ export function setupSwagger(app: INestApplication) {
 
   const document = SwaggerModule.createDocument(app, config);
 
-  SwaggerModule.setup('api', app, document, {
+  SwaggerModule.setup('documentacao', app, document, {
     customSiteTitle: 'API Link Shortener - Docs',
     customCss: `
       /* --- Variáveis de Cor (Tema Claro Moderno) --- */

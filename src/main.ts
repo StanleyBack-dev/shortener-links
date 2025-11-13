@@ -8,7 +8,7 @@ async function bootstrap() {
   setupSwagger(app);
 
   await app.listen(4000);
-  console.log('\n🚀 Swagger disponível em: http://localhost:4000/api');
+  console.log('\n🚀 Swagger disponível em: http://localhost:4000/documentacao');
   console.log('🚀 Servidor disponível em: http://localhost:4000');
 }
 

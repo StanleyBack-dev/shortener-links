@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { ComparePassword } from 'src/utils/hash.util';
-import { SetAuthCookies } from 'src/utils/cookies.util';
+import { ComparePassword } from '../../../common/utils/hash.util';
+import { SetAuthCookies } from '../../../common/utils/cookies.util';
 import { DtoAuthLoginInput } from '../dto/auth.login.input.dto';
 import { DtoAuthLoginResponse } from '../dto/auth.login.response.dto';
 import { UsersGetService } from 'src/modules/users/services/users.get.service';
