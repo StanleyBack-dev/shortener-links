@@ -10,6 +10,7 @@ import { JwtUserInterceptor } from './common/interceptors/jwt.user.interceptor';
 import { JwtService } from '@nestjs/jwt';
 import { JwtAuthGuard } from './common/guards/jwt.auth.guard';
 import { CommonModule } from './common/common.module';
+import { AppCacheModule } from './cache/cache.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CommonModule } from './common/common.module';
     AuthModule,
     LinksModule,
     TypeOrmModule.forRoot(typeOrmConfig),
+    AppCacheModule,
   ],
   providers: [
     {
