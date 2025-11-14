@@ -33,7 +33,6 @@ export class LinksUpdateService {
     link.updated_at = new Date();
     link.click_count = 0;
 
-    // SALVA NO BANCO
     await this.linksRepository.save(link);
 
     return link;

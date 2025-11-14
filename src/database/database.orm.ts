@@ -12,7 +12,7 @@ const envFile =
 
 dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 
-console.log(`🧠 ENV DATABASE: ${process.env.NODE_ENV}`);
+console.log(`🧠 ENV DATABASE: ${process.env.NODE_ENV}`, '\n');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
