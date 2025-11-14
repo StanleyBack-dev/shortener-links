@@ -1,26 +1,35 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { HashPassword } from '../../../common/utils/hash.util';
-import { Users } from '../entities/users.entity';
-import { DtoCreateUsersInput } from '../dto/create/users.create.input.dto';
-import { DtoCreateUsersResponse } from '../dto/create/users.create.response';
+import { HashPassword } from '../../../../common/utils/hash.util';
+import { Users } from '../../entities/users.entity';
+import { DtoCreateUsersInput } from '../../dto/create/users.create.input.dto';
+import { DtoCreateUsersResponse } from '../../dto/create/users.create.response';
+import { UsersValidationService } from '../validation/users.validation.service';
 
 @Injectable()
 export class UsersCreateService {
   constructor(
     @InjectRepository(Users)
     private readonly userRepository: Repository<Users>,
+
+    private readonly usersValidationService: UsersValidationService,
   ) {}
 
-  // CRIA UM NOVO USUÁRIO E RETORNA O DTO DE RESPOSTA
   async execute(data: DtoCreateUsersInput): Promise<DtoCreateUsersResponse> {
-    const { password, ...rest } = data;
+    const exists = await this.usersValidationService.findConflictFields(
+      data.username,
+      data.email,
+      data.document_number,
+    );
 
-    // GERA O HASH DA SENHA SE EXISTIR
+    if (exists) {
+      throw new ConflictException('Não foi possível criar o usuário.');
+    }
+
+    const { password, ...rest } = data;
     const hashedPassword = password ? await HashPassword(password) : undefined;
 
-    // CRIA O USUÁRIO
     const user = this.userRepository.create({
       ...rest,
       password: hashedPassword,
@@ -28,7 +37,6 @@ export class UsersCreateService {
 
     const savedUser = await this.userRepository.save(user);
 
-    // RETORNA O DTO DE RESPOSTA FORMATADO
     return new DtoCreateUsersResponse({
       public_id_users: savedUser.public_idtb_users,
       username: savedUser.username,

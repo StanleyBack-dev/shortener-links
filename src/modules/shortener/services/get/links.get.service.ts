@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { IsNull } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Links } from '../entities/links.entity';
+import { Links } from '../../entities/links.entity';
 
 @Injectable()
 export class LinksGetService {

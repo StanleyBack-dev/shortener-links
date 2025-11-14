@@ -1,7 +1,7 @@
 import { UseGuards, Controller, Get, Req } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/common/guards/jwt.auth.guard';
 import { ApiTags, ApiBearerAuth, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
-import { LinksGetService } from '../../services/links.get.service';
+import { LinksGetService } from '../../services/get/links.get.service';
 import { DtoGetLinksResponse } from '../../dto/get/links.get.response.dto';
 
 @ApiTags('Links')

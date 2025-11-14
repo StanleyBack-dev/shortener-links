@@ -1,7 +1,7 @@
 import { Controller, Patch, Param, Body, Req, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiOkResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/common/guards/jwt.auth.guard';
-import { LinksUpdateService } from '../../services/links.update.service';
+import { LinksUpdateService } from '../../services/update/links.update.service';
 import { DtoUpdateLinkInput } from '../../dto/update/links.update.input.dto';
 import { DtoUpdateLinkResponse } from '../../dto/update/links.update.response.dto';
 

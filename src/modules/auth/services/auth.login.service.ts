@@ -4,9 +4,9 @@ import { ComparePassword } from '../../../common/utils/hash.util';
 import { SetAuthCookies } from '../../../common/utils/cookies.util';
 import { DtoAuthLoginInput } from '../dto/auth.login.input.dto';
 import { DtoAuthLoginResponse } from '../dto/auth.login.response.dto';
-import { UsersGetService } from 'src/modules/users/services/users.get.service';
+import { UsersGetService } from 'src/modules/users/services/get/users.get.service';
 import { AuthCreateSessionService } from './auth.create.session.service';
-import { UsersUpdateService } from 'src/modules/users/services/users.update.service';
+import { UsersUpdateService } from 'src/modules/users/services/update/users.update.service';
 import { Response } from 'express';
 
 @Injectable()

@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, IsNull } from 'typeorm';
-import { Links } from '../entities/links.entity';
-import { DtoUpdateLinkInput } from '../dto/update/links.update.input.dto';
+import { Links } from '../../entities/links.entity';
+import { DtoUpdateLinkInput } from '../../dto/update/links.update.input.dto';
 
 @Injectable()
 export class LinksUpdateService {

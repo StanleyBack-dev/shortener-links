@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class DtoDeleteLinkResponse {
-  @ApiProperty({ example: 1, description: 'Identificador interno do link atualizado' })
+  @ApiProperty({ example: 1, description: 'Identificador interno do link inativado' })
   id_link: number;
 
   @ApiProperty({ example: 'aZbKq7', description: 'Código encurtado gerado para o link' })

@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Links } from '../entities/links.entity';
+import { Links } from '../../entities/links.entity';
 import { Users } from 'src/modules/users/entities/users.entity';
-import { DtoCreateLinksInput } from '../dto/create/links.create.input.dto';
-import { DtoCreateLinksResponse } from '../dto/create/links.create.response.dto';
+import { DtoCreateLinksInput } from '../../dto/create/links.create.input.dto';
+import { DtoCreateLinksResponse } from '../../dto/create/links.create.response.dto';
 
 @Injectable()
 export class LinksCreateService {

@@ -1,7 +1,7 @@
 import { Controller, Param, Req, UseGuards, Delete } from "@nestjs/common";
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiOkResponse, ApiNotFoundResponse } from "@nestjs/swagger";
 import { JwtAuthGuard } from "src/common/guards/jwt.auth.guard";
-import { LinksDeleteService } from "../../services/links.delete.service";
+import { LinksDeleteService } from "../../services/delete/links.delete.service";
 import { DtoDeleteLinkResponse } from "../../dto/delete/links.delete.response.dto";
 
 @ApiTags('Links')
